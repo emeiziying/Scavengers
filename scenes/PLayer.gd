@@ -13,7 +13,7 @@ var inputs = {
 func _ready():
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size / 2
-	print(Vector2.ONE)
+	print(Vector2.ONE * 2)
 
 
 func _unhandled_input(event):
