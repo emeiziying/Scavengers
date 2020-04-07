@@ -28,6 +28,5 @@ func move(dir):
 	var vector_pos = inputs[dir] * tile_size
 	ray.cast_to = vector_pos
 	ray.force_raycast_update()
-
 	if ! ray.is_colliding():
 		position += inputs[dir] * tile_size
