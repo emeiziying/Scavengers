@@ -1,16 +1,14 @@
 extends TileMap
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	randomMap()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# 生成随机背景地图
+func randomMap():
+	var cells = get_used_cells()
+	for v in cells:
+		var tile = tile_set.find_tile_by_name('floor')
+		set_cell(v.x, v.y, tile, false, false, false, Vector2(randi() % 8, 0))
