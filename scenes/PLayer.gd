@@ -1,5 +1,7 @@
 extends Area2D
 
+onready var ray: RayCast2D = $RayCast2D
+
 var tile_size = 32
 var inputs = {
 	'ui_right': Vector2.RIGHT,
@@ -11,9 +13,9 @@ var inputs = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = position.snapped(Vector2.ONE * tile_size)
-	position += Vector2.ONE * tile_size / 2
-	print(Vector2.ONE * 2)
+	# position = position.snapped(Vector2.ONE * tile_size)
+	# position += Vector2.ONE * tile_size / 2
+	pass
 
 
 func _unhandled_input(event):
@@ -23,4 +25,9 @@ func _unhandled_input(event):
 
 
 func move(dir):
-	position += inputs[dir] * tile_size * 2
+	var vector_pos = inputs[dir] * tile_size
+	ray.cast_to = vector_pos
+	ray.force_raycast_update()
+
+	if ! ray.is_colliding():
+		position += inputs[dir] * tile_size
