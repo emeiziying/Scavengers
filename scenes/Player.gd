@@ -18,15 +18,17 @@ func _ready():
 	pass
 
 
-func _unhandled_input(event):
+func _unhandled_input(event:InputEvent) -> void:
 	for dir in inputs.keys():
 		if event.is_action_pressed(dir):
 			move(dir)
+	pass
 
 
 func move(dir) -> void:
-	var vector_pos = inputs[dir] * tile_size
+	var vector_pos: Vector2 = inputs[dir] * tile_size
 	ray.cast_to = vector_pos
 	ray.force_raycast_update()
 	if ! ray.is_colliding():
 		position += inputs[dir] * tile_size
+	pass
